@@ -1,27 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Wall : MonoBehaviour {
-
-    private Rigidbody playerRb;
+public class StdWall : MonoBehaviour 
+{
+    private Rigidbody2D playerRb;
     private Jumper jumper;
-    private Vector3 targetVelocity = new Vector3(0,-3,0);
+    private Vector2 targetVelocity = new Vector2(0,-3);
 
-	// Use this for initialization
-	void Start () {
-
+	// Initialize the playerRb and jumper variables.
+	void Start () 
+	{
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-        playerRb = p.GetComponent<Rigidbody>();
+        playerRb = p.GetComponent<Rigidbody2D>();
         jumper = p.GetComponent<Jumper>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// Update is called once per frame.
+	void Update () 
+	{
 	
 	}
 
-    // Resets Player's jump.
-    void OnCollisionEnter(Collision col)
+	// On collision enter, Change player's turnRight and isColliding accordingly.
+    void OnCollisionEnter2D(Collision2D col)
     {
         if(col.collider.gameObject.tag=="Player")
         {
@@ -30,8 +31,8 @@ public class Wall : MonoBehaviour {
         }
     }
 
-    // Resets Player's jump.
-    void OnCollisionExit(Collision col)
+	// On collision exit, Resets Player's isColliding.
+    void OnCollisionExit2D(Collision2D col)
     {
         if (col.collider.gameObject.tag == "Player")
         {
@@ -40,7 +41,7 @@ public class Wall : MonoBehaviour {
     }
     
     // Make sure that the player's Y-velocity doesn't increase to much when player is in contact with the wall.
-    void OnCollisionStay(Collision col)
+    void OnCollisionStay2D(Collision2D col)
     {
         if (col.collider.gameObject.tag == "Player")
         {

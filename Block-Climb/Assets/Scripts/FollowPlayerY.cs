@@ -3,16 +3,13 @@ using System.Collections;
 
 public class FollowPlayerY : MonoBehaviour
 {
-
-	//TODO: ADD 50% FOLLOWING ON PLAYER
-
     public Transform player;
-    private Vector3 playerPos = new Vector3();
+    private Vector2 playerPos = new Vector2();
 	
 	// Update position to follow the target object in Y-Axis.
 	void Update ()
     {
-        playerPos.Set(transform.position.x, player.position.y, transform.position.z);
+        playerPos.Set(transform.position.x, player.position.y);
         transform.position = playerPos;
 	}
 }
