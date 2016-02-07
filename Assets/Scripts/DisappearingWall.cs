@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DisappearingWall : MonoBehaviour 
+public class DisappearingWall : MonoBehaviour
 {
-	private Rigidbody2D playerRb;
+    public int counter = 1;
+
+    private Rigidbody2D playerRb;
 	private Jumper jumper;
 	private Vector2 targetVelocity = new Vector2(0,-3);
 	
@@ -37,15 +39,25 @@ public class DisappearingWall : MonoBehaviour
 		if (col.collider.gameObject.tag == "Player")
 		{
 			jumper.isColliding(false);
-			Disappear ();
+            CountDown();
 		}
 	}
+
+    void CountDown ()
+    {
+        counter -= 1;
+        if (counter == 0)
+        {
+            Disappear();
+        }
+    }
 
 	// Make the wall disappear.
 	void Disappear ()
 	{
 		Destroy (gameObject);
 	}
+
 	// Make sure that the player's Y-velocity doesn't increase to much when player is in contact with the wall.
 	void OnCollisionStay2D(Collision2D col)
 	{
